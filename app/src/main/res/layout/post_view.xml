@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".PostActivity">
+
+    <LinearLayout
+        android:id="@+id/postImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/postImage"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="fitXY"
+            android:contentDescription="TODO" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/likeCountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/postLikeButtton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/postLikeCounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/like_count_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/postTextHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/i_this_is_my_story" />
+    </LinearLayout>
+
+</LinearLayout>

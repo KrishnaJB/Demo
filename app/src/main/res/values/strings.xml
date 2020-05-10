@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Demo</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password_user">Enter Password</string>
+    <string name="like_count_10">10</string>
+    <string name="i_this_is_my_story">I this is my Story</string>
+    <string name="google_signin">Google</string>
+    <string name="upload_page">Upload Page</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="upload_Button">Upload</string>
+    <string name="title_activity_bottom_bar_new_feeds">BottomBarNewFeeds</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="nav_settings">Settings</string>
+    <string name="todo">TODO</string>
+
+    <string name="facebook_app_id">546376482709486</string>
+    <string name="facebook_login_protocol_scheme">fb546376482709486</string>
+
+
+</resources>

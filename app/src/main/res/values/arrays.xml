@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="names">
+        <item>Cricket</item>
+        <item>Editorial News</item>
+        <item>Cinema</item>
+        <item>Indian Sports</item>
+        <item>Story</item>
+    </string-array>
+
+
+</resources>
