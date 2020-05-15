@@ -59,6 +59,8 @@ public class DetailedPostView extends AppCompatActivity {
                         .setContentUrl(Uri.parse(detailedImage)).build();
                 if (ShareDialog.canShow(ShareLinkContent.class)){
                     shareDialog.show(linkContent);
+                } else{
+
                 }
 
             }
