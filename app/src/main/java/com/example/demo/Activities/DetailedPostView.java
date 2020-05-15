@@ -2,8 +2,16 @@ package com.example.demo.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +23,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class DetailedPostView extends AppCompatActivity {
 
@@ -30,7 +41,7 @@ public class DetailedPostView extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_post_view);
 
         //Facebook Initiate
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
+//        FacebookSdk.sdkInitialize(this.getApplicationContext());
 
         detailedImg = findViewById(R.id.detailedImageView);
         detailTitle = findViewById(R.id.detailedViewTitle);
@@ -49,17 +60,57 @@ public class DetailedPostView extends AppCompatActivity {
         detailDescription.setText(postDescription);
 
         //Fb share
-        callbackManager = CallbackManager.Factory.create();
-        shareDialog = new ShareDialog(this);
+//        callbackManager = CallbackManager.Factory.create();
+//        shareDialog = new ShareDialog(this);
+
+        final String imageShare = detailedImage;
 
         shareOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareLinkContent linkContent = new ShareLinkContent.Builder().setQuote(postTitle)
+
+                String text = "Look at my awesome picture";
+                Uri pictureUri = Uri.parse(detailedImage);
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("image/*");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+//                shareIntent.setType("image/*");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, pictureUri);
+                shareIntent.setPackage("com.whatsapp");
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(Intent.createChooser(shareIntent, "Share images..."));
+
+
+              /*  String text = "Look at my awesome picture";
+                Uri pictureUri = Uri.parse(detailedImage);
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+                shareIntent.putExtra(Intent.EXTRA_STREAM, pictureUri);
+                shareIntent.setType("image/*");
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivity(Intent.createChooser(shareIntent, "Share images..."));
+*/
+//                Uri imageToShare = Uri.parse(detailedImage); //MainActivity.this is the context in my app.
+//
+//                Intent shareIntent = new Intent();
+//
+//                shareIntent.setAction(Intent.ACTION_SEND);
+//                shareIntent.setType("*/*");
+//                shareIntent.putExtra(Intent.EXTRA_STREAM,postTitle);
+//                shareIntent.setPackage("com.whatsapp");
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, imageToShare);
+//                startActivity(Intent.createChooser(shareIntent, "Share"));
+
+                // Share in Facebook using Facebook SDK
+                /*ShareLinkContent linkContent = new ShareLinkContent.Builder().setQuote(postTitle)
                         .setContentUrl(Uri.parse(detailedImage)).build();
                 if (ShareDialog.canShow(ShareLinkContent.class)){
                     shareDialog.show(linkContent);
-                }
+                } else{
+
+                }*/
 
             }
         });
