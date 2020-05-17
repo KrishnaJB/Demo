@@ -17,7 +17,7 @@
     <string name="todo">TODO</string>
 
     <string name="facebook_app_id">546376482709486</string>
-    <string name="facebook_login_protocol_scheme">fb546376482709486</string>
+    <string name="share_image" />
 
 
 </resources>
