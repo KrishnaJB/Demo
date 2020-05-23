@@ -1,10 +1,14 @@
 package com.example.demo.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.FileProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,6 +20,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.demo.R;
@@ -25,6 +30,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class DetailedPostView extends AppCompatActivity {
@@ -40,8 +46,8 @@ public class DetailedPostView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_post_view);
 
-        //Facebook Initiate
-//        FacebookSdk.sdkInitialize(this.getApplicationContext());
+
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
 
         detailedImg = findViewById(R.id.detailedImageView);
         detailTitle = findViewById(R.id.detailedViewTitle);
@@ -59,9 +65,9 @@ public class DetailedPostView extends AppCompatActivity {
         String postDescription = getIntent().getExtras().getString("description");
         detailDescription.setText(postDescription);
 
-        //Fb share
-//        callbackManager = CallbackManager.Factory.create();
-//        shareDialog = new ShareDialog(this);
+//        Fb share
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
 
         final String imageShare = detailedImage;
 
@@ -69,51 +75,55 @@ public class DetailedPostView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text = "Look at my awesome picture";
-                Uri pictureUri = Uri.parse(detailedImage);
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-//                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, pictureUri);
-                shareIntent.setPackage("com.whatsapp");
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivity(Intent.createChooser(shareIntent, "Share images..."));
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable)detailedImg.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                shareImageAndText(postTitle, bitmap);
 
 
-              /*  String text = "Look at my awesome picture";
-                Uri pictureUri = Uri.parse(detailedImage);
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, pictureUri);
-                shareIntent.setType("image/*");
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivity(Intent.createChooser(shareIntent, "Share images..."));
-*/
-//                Uri imageToShare = Uri.parse(detailedImage); //MainActivity.this is the context in my app.
-//
-//                Intent shareIntent = new Intent();
-//
-//                shareIntent.setAction(Intent.ACTION_SEND);
-//                shareIntent.setType("*/*");
-//                shareIntent.putExtra(Intent.EXTRA_STREAM,postTitle);
-//                shareIntent.setPackage("com.whatsapp");
-//                shareIntent.putExtra(Intent.EXTRA_STREAM, imageToShare);
-//                startActivity(Intent.createChooser(shareIntent, "Share"));
+
 
                 // Share in Facebook using Facebook SDK
-                /*ShareLinkContent linkContent = new ShareLinkContent.Builder().setQuote(postTitle)
+                ShareLinkContent linkContent = new ShareLinkContent.Builder().setQuote(postTitle)
                         .setContentUrl(Uri.parse(detailedImage)).build();
                 if (ShareDialog.canShow(ShareLinkContent.class)){
                     shareDialog.show(linkContent);
                 } else{
 
-                }*/
+                }
 
             }
         });
 
+    }
+
+    private void shareImageAndText(String postTitle, Bitmap bitmap) {
+        String shareBody = postTitle;
+        Uri uri = saveImageToShare(bitmap);
+        Intent sIntent = new Intent(Intent.ACTION_SEND);
+        sIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        sIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        sIntent.setType("image/png");
+        startActivity(Intent.createChooser(sIntent, "Share via"));
+    }
+
+    private Uri saveImageToShare(Bitmap bitmap) {
+        File imageFolder = new File(getCacheDir(), "images");
+        Uri uri = null;
+        try {
+            imageFolder.mkdirs();
+            File file = new File(imageFolder, "shared_images.png");
+
+            FileOutputStream stream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+            stream.flush();
+            stream.close();
+
+            uri = FileProvider.getUriForFile(this, "com.example.demo.fileprovider", file);
+
+        }catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        return uri;
     }
 }
