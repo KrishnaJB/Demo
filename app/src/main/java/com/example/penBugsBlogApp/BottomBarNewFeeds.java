@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.penBugsBlogApp;
 
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

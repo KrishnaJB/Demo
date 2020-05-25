@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.penBugsBlogApp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.demo.Models.Post;
+import com.example.penBugsBlogApp.Models.Post;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -127,7 +127,7 @@ public class UploadPost extends AppCompatActivity {
                                             descriptionText.getText().toString(),
                                             imageDownlaodLink,
                                             currentUser.getUid()
-                                            );
+                                           );
 
                                         addPost(post);
 

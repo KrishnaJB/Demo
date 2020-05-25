@@ -1,4 +1,4 @@
-package com.example.demo.ui.settings;
+package com.example.penBugsBlogApp.ui.settings;
 
 import androidx.lifecycle.ViewModel;
 

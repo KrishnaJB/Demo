@@ -1,4 +1,4 @@
-package com.example.demo.Models;
+package com.example.penBugsBlogApp.Models;
 
 import com.google.firebase.database.ServerValue;
 

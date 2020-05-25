@@ -1,4 +1,4 @@
-package com.example.demo.ui.dashboard;
+package com.example.penBugsBlogApp.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
