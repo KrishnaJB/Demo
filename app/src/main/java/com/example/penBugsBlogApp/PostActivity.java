@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.penBugsBlogApp;
 
 import androidx.fragment.app.FragmentActivity;
 

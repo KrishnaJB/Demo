@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.demo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.penBugsBlogApp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,18 +19,33 @@
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-        <activity android:name=".Activities.DetailedPostView"></activity>
+        <activity android:name="com.example.penBugsBlogApp.Activities.DetailedPostView">
+
+        </activity>
         <activity
-            android:name=".BottomBarNewFeeds"
-            android:label="@string/title_activity_bottom_bar_new_feeds"></activity>
-        <activity android:name=".UploadPost" />
-        <activity android:name=".RegistrationNewUser" />
-        <activity android:name=".PostActivity" />
-        <activity android:name=".MainActivity">
+            android:name="com.example.penBugsBlogApp.BottomBarNewFeeds"
+            android:label="@string/title_activity_bottom_bar_new_feeds"/>
+        <activity android:name="com.example.penBugsBlogApp.UploadPost" />
+        <activity android:name="com.example.penBugsBlogApp.RegistrationNewUser" />
+        <activity android:name="com.example.penBugsBlogApp.PostActivity" />
+        <activity android:name="com.example.penBugsBlogApp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="23">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="penbugsblog.page.link"
+                    android:scheme="https"/>
+                <data
+                    android:host="penbugsblog.page.link"
+                    android:scheme="http"/>
             </intent-filter>
         </activity>
 
@@ -37,7 +53,7 @@
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
         <provider
-            android:authorities="com.example.demo.fileprovider"
+            android:authorities="com.example.penBugsBlogApp.fileprovider"
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

@@ -1,4 +1,4 @@
-package com.example.demo.ui.settings;
+package com.example.penBugsBlogApp.ui.settings;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo.R;
+import com.example.penBugsBlogApp.R;
 
 public class SettingsFragment1 extends Fragment {
 

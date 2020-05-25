@@ -1,4 +1,4 @@
-package com.example.demo.ui.dashboard;
+package com.example.penBugsBlogApp.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import com.example.demo.R;
+import com.example.penBugsBlogApp.R;
 
 public class DashboardFragment extends Fragment {
 
